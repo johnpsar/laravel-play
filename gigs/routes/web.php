@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -15,23 +16,6 @@ use App\Models\Listing;
 |
 */
 
-Route::get('/', function () {
-    return view('listings/index', ['listings' => Listing::all()]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
-Route::get('/listing/{listing}', function (Listing $listing) {
-
-    return view('listings/show', ['listing' => $listing]);
-
-});
-// Route::get('/hello',function(){
-//     return response('<marquee>Hello World</marquee>');
-// });
-
-// Route::get('/hello/{id}',function($id){
-//     return response('<h1>Post.</h1>'.$id);
-// })->where('id','[0-9]+');
-
-// Route::get('/search',function(Request $request){
-// return ($request->name.''.$request->city);
-// });
+Route::get('/listing/{listing}', [ListingController::class, 'show']);
